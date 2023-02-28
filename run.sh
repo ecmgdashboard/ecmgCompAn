@@ -1,1 +1,1 @@
-streamlit run 🥇_Competitive_Analytics.py
+streamlit run _Competitive_Analytics.py
