@@ -42,6 +42,8 @@ st.header(f'1. {first_place}: {FirstWins} win')
 st.subheader(f'2. {second_place}: {SecondWins} win')
 st.subheader(f'3. Delta: 0 wins')
 st.subheader(f'4. Theta: 0 Wins')
+st.header("")
+st.subheader("Full Data")
 AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 # Read in data from the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
