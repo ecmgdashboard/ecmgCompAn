@@ -1,16 +1,15 @@
+import csv
 import pandas as pd
 import streamlit as st
 from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
 #from streamlit_vega_lite import vega_lite_component, AltairComponent
-
-
 
 st.markdown("# **:green[ I Board Results :tada:]**")
 
 df = pd.read_csv("IBOARD.csv")
 
 
- # Output: 1
+# Output: 1
 
 counts = df[df['Winner?'] == 'Yes']['Team'].value_counts()
 
@@ -47,6 +46,29 @@ st.subheader("Full Data")
 AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 # Read in data from the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
+
+#show P/L and Buy and Sell values of stocks
+
+st.subheader("I-Board Stocks that Won:")
+with open("IBOARD.csv", "r") as csv_file:
+    csv_reader = csv.reader(csv_file)
+
+
+    for line in csv_reader:
+
+        if "Yes" in line:
+            second_word = line[1]
+            st.button(second_word)
+            buy = line[4]
+            sell = line[5]
+            if buy.isdigit() and sell.isdigit():
+               pl = int(buy)-int(sell)
+            st.write("Buy Value: "+buy+"\nSell Value: "+sell)
+            if pl<0:
+                unrealized = "("+str(pl)+")"
+            else:
+               unrealized = str(pl)
+            st.write("Unrealized P/L: "+unrealized)
 
 # Print results.
 st.balloons()
