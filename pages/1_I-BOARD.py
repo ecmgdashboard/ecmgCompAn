@@ -84,6 +84,22 @@ data = pd.read_csv("IBOARD.csv")
 for (team), group in data.groupby(['Team']):
     group.to_csv(f'{team}.csv', index=False)
 
+
+gamma = pd.read_csv("Gamma.csv")
+vega = pd.read_csv("Vega.csv")
+theta = pd.read_csv("Theta.csv")
+delta = pd.read_csv("Delta.csv")
+
+print(gamma.head())
+print()
+print(vega.head())
+print()
+print(theta.head())
+print()
+print(delta.head())
+
+
+
 #print(pd.read_csv("Vega.csv"))
 #print(pd.read_csv("Gamma.csv"))
 #print(pd.read_csv("Theta.csv"))
