@@ -1,10 +1,12 @@
 import csv
 import pandas as pd
 import streamlit as st
+from datetime import datetime
+from yahoo_fin import stock_info as si
 from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
 #from streamlit_vega_lite import vega_lite_component, AltairComponent
 
-st.markdown("# **:green[ I Board Results :tada:]**")
+st.markdown("# **:green[ I-Board Results :tada:]**")
 
 df = pd.read_csv("IBOARD.csv")
 
@@ -37,18 +39,27 @@ SecondWins = count_wins(df, second_place)
 FirstWins = count_wins(df, first_place)
 #ThirdWins = count_wins(df, third_place)
 #FourthWins = count_wins(df, fourth_place)
-st.header(f'1. {first_place}: {FirstWins} win')
+st.header(f'1. {first_place}: {FirstWins} wins')
 st.subheader(f'2. {second_place}: {SecondWins} win')
 st.subheader(f'3. Delta: 0 wins')
-st.subheader(f'4. Theta: 0 Wins')
+st.subheader(f'4. Theta: 0 wins')
 st.header("")
 st.subheader("Full Data")
 AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
-# Read in data from the Google Sheet.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
 
+def getprice(ticker,date_str):
+    date = datetime.strptime(date_str, "%Y-%m-%d")
 
-
+    # Download the stock data for the specified date
+    data = si.get_data(ticker, start_date=date)
+    x = data['open'][0]
+    x = round(x, 2)
+    return x
+def liveprice(ticker):
+    current_price = si.get_live_price(ticker)
+    current_price = round(current_price,2)
+    #round(current_price,5)
+    return current_price
 
 st.subheader("I-Board Stocks that Won:")
 
@@ -64,20 +75,40 @@ with open("IBOARD.csv", "r") as csv_file:
         if "Yes" in line:
             if gamma:
                 if "Gamma" in line:
+                    purchaseprice = getprice(line[1], line[2])
+                    currentprice = liveprice(line[1])
+                    total = round((currentprice - purchaseprice), 2)
+                    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
-                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+                    st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
+                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
             elif vega:
                 if "Vega" in line:
+                    purchaseprice = getprice(line[1], line[2])
+                    currentprice = liveprice(line[1])
+                    total = round((currentprice - purchaseprice), 2)
+                    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
-                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+                    st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
+                    st.metric(label="Change", value=f'{change}%')
             elif theta:
                 if "Theta" in line:
+                    purchaseprice = getprice(line[1], line[2])
+                    currentprice = liveprice(line[1])
+                    total = round((currentprice - purchaseprice), 2)
+                    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
-                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+                    st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
+                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
             elif delta:
                 if "Delta" in line:
+                    purchaseprice = getprice(line[1], line[2])
+                    currentprice = liveprice(line[1])
+                    total = round((currentprice - purchaseprice),2)
+                    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
-                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+                    st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
+                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
 
 
 data = pd.read_csv("IBOARD.csv")
@@ -127,4 +158,4 @@ print(delta.head())
     #       st.write("Unrealized P/L: "+unrealized)
 
 # Print results.
-st.balloons()
+

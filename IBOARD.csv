@@ -1,9 +1,14 @@
-﻿Team,Pitch,Date,Winner?,PT,SL
-Gamma,AAPL,1/1/2023,Yes,150,105
-Vega,TSLA,1/1/2023,No,200,113
-Delta,RMT,1/1/2023,No,10,8.50
-Theta,AA,1/1/2023,No,60,35
-Gamma,AAL,1/1/2023,No,16.8,12
-Vega,T,1/1/2023,Yes,21,17
-Delta,M,1/1/2023,No,24,15
-Theta,NH,1/1/2023,No,5,2
+﻿Team,Pitch,Date of Next Open,Winner?,PT,SL
+Gamma,AAPL,2023-01-02,Yes,150,105
+Vega,TSLA,2023-01-02,No,200,113
+Delta,RMT,2023-01-02,No,10,8.5
+Theta,AA,2023-01-02,No,60,35
+Gamma,AAL,2023-01-01,No,16.8,12
+Vega,T,2023-01-01,Yes,21,17
+Delta,M,2023-01-01,No,24,15
+Theta,NH,2023-01-01,No,5,2
+Gamma,NRP,2023-03-27,No,64.51,41
+Vega,VRTX,2023-03-27,Yes,365,280.97
+Delta,PANW,2023-03-27,No,227,162.81
+Theta,C,2023-03-27,No,81.65,0
+,,,,,
