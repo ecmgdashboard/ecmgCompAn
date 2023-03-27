@@ -47,28 +47,56 @@ AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 # Read in data from the Google Sheet.
 # Uses st.cache_data to only rerun when the query changes or after 10 min.
 
-#show P/L and Buy and Sell values of stocks
+
+
 
 st.subheader("I-Board Stocks that Won:")
+
+#read CSV and list P/L and Buy and Sell values of stocks that won
 with open("IBOARD.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
-
-
+    gamma = st.button('Gamma')
+    vega = st.button('Vega')
+    theta = st.button('Theta')
+    delta = st.button('Delta')
     for line in csv_reader:
 
         if "Yes" in line:
-            second_word = line[1]
-            st.button(second_word)
-            buy = line[4]
-            sell = line[5]
-            if buy.isdigit() and sell.isdigit():
-               pl = int(buy)-int(sell)
-            st.write("Buy Value: "+buy+"\nSell Value: "+sell)
-            if pl<0:
-                unrealized = "("+str(pl)+")"
-            else:
-               unrealized = str(pl)
-            st.write("Unrealized P/L: "+unrealized)
+            if gamma:
+                if "Gamma" in line:
+                    st.header(line[1])
+                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+            elif vega:
+                if "Vega" in line:
+                    st.header(line[1])
+                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+            elif theta:
+                if "Theta" in line:
+                    st.header(line[1])
+                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+            elif delta:
+                if "Delta" in line:
+                    st.header(line[1])
+                    st.write("Buy: " + line[4] + " Sell: " + line[5])
+
+#with open("IBOARD.csv", "r") as csv_file:
+    #csv_reader = csv.reader(csv_file)
+
+    #for line in csv_reader:
+
+    #   if "Yes" in line:
+    #       second_word = line[1]
+    #       st.button(second_word)
+    #       buy = line[4]
+    #       sell = line[5]
+    #       if buy.isdigit() and sell.isdigit():
+    #          pl = int(buy)-int(sell)
+    #       st.write("Buy Value: "+buy+"\nSell Value: "+sell)
+    #       if pl<0:
+    #           unrealized = "("+str(pl)+")"
+    #       else:
+    #          unrealized = str(pl)
+    #       st.write("Unrealized P/L: "+unrealized)
 
 # Print results.
 st.balloons()
