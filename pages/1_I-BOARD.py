@@ -79,6 +79,18 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.header(line[1])
                     st.write("Buy: " + line[4] + " Sell: " + line[5])
 
+
+data = pd.read_csv("IBOARD.csv")
+for (team), group in data.groupby(['Team']):
+    group.to_csv(f'{team}.csv', index=False)
+
+#print(pd.read_csv("Vega.csv"))
+#print(pd.read_csv("Gamma.csv"))
+#print(pd.read_csv("Theta.csv"))
+#print(pd.read_csv("Delta.csv"))
+
+
+
 #with open("IBOARD.csv", "r") as csv_file:
     #csv_reader = csv.reader(csv_file)
 
