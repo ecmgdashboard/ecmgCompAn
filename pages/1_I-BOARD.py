@@ -72,7 +72,7 @@ with open("IBOARD.csv", "r") as csv_file:
     delta = st.button('Delta')
     for line in csv_reader:
 
-        if "Yes" in line:
+        #if "Yes" in line:
             if gamma:
                 if "Gamma" in line:
                     purchaseprice = getprice(line[1], line[2])
