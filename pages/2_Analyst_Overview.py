@@ -2,18 +2,16 @@ import streamlit as st
 import yfinance as yf
 from datetime import datetime
 from yahoo_fin import stock_info as si
+import csv
+import pandas as pd
 
-# Specify the ticker symbol and date as a string in Y-M-D format
-ticker = "AAPL"
-date_str = "2022-01-01"
 
-# Convert the date string to a datetime object
-date = datetime.strptime(date_str, "%Y-%m-%d")
+analystdf = pd.read_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv')
+# create dropdown
+analystname = analystdf.loc[:, ["Analyst Name"]]
+option = st.selectbox("Select An Analyst",
+             analystname)
 
-# Download the stock data for the specified date
-data = si.get_data(ticker,start_date=date)
-x = data['open'][0]
-x =round(x,2)
-
-# Print the stock data
-st.write(x)
+# selected analyst pitch
+pitch = analystdf.loc[analystdf['Analyst Name'] == option]
+st.write(pitch)
