@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Analyst Name,Team,Stock,Date Entered,Price Target,Entry Price,Current Price,Stop Loss,Total PnL
 Advaidh Iyer,Gamma,,,,,,,$0.00
 Akhil Tummala,Theta,,,,,,,$0.00
@@ -32,4 +33,41 @@ Satya Subramanian,Delta,,,,,,,$0.00
 Sid Turaga,Delta,,,,,,,$0.00
 Sujeeth Karri,Delta,,,,,,,$0.00
 Ved Pasham,Gamma,,,,,,,$0.00
+=======
+Analyst Name,Team,Stock,Date Entered,Price Target,Entry Price,Current Price,Stop Loss,Total PnL
+Advaidh Iyer,Gamma,AAPL,2021-01-01,,,,,$0.00
+Advaidh Iyer,Gamma,TSLA,2021-01-01,,,,,$0.00
+Akhil Tummala,Theta,,,,,,,$0.00
+Amisha Belthur,Theta,,,,,,,$0.00
+Anirudh Lingaraju,Theta,,,,,,,$0.00
+Bradley Simmons,Delta,,,,,,,$0.00
+Brian Garten,Delta,,,,,,,$0.00
+Bryce Burns,Vega,,,,,,,$0.00
+Chrissy Frederick,Gamma,,,,,,,$0.00
+Enzo Martella,Gamma,,,,,,,$0.00
+H. Chen,Vega,,,,,,,$0.00
+Harrison Russman,Gamma,,,,,,,$0.00
+Ian Nystedt,Theta,,,,,,,$0.00
+Jake Leary,Vega,,,,,,,$0.00
+James Podell,Theta,,,,,,,$0.00
+Jay Kadire,Vega,,,,,,,$0.00
+Jeremy,Delta,,,,,,,$0.00
+Kedar Ram,Theta,,,,,,,$0.00
+Max Xu,Vega,LMT,11/26/2022,$520.00,$483.46,,$443.69,$483.46
+Michael Huber,Gamma,,,,,,,$0.00
+Noah Pearlman,Delta,,,,,,,$0.00
+Pratik Singh,Gamma,,,,,,,$0.00
+Richie Epstein,Gamma,,,,,,,$0.00
+Rishabh Mantha,Gamma,,,,,,,$0.00
+River Tardis,Vega,,,,,,,$0.00
+Rohith Gudati,Vega,,,,,,,$0.00
+Ryan Duffy,Vega,,,,,,,$0.00
+Ryan Weisman,Gamma,,,,,,,$0.00
+Sandy Hans,Delta,,,,,,,$0.00
+Sanju Swamy,Gamma,,,,,,,$0.00
+Satya Subramanian,Delta,,,,,,,$0.00
+Sid Turaga,Delta,,,,,,,$0.00
+Sujeeth Karri,Delta,,,,,,,$0.00
+Ved Pasham,Gamma,,,,,,,$0.00
+>>>>>>> origin/main
 Viraj Lakhotia,Theta,,,,,,,$0.00
