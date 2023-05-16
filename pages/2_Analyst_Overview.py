@@ -6,7 +6,7 @@ import pandas as pd
 from st_aggrid import AgGrid
 
 st.header('Analyst Analyzer')
-st.caption('**based on IBoard pitches since 10/19/2022')
+st.caption('** since 10/19/2022')
 st.balloons()
 
 analystdf = pd.read_csv('Individual Analyst Stock Pitches - Sheet1.csv')
