@@ -3,7 +3,7 @@ import pandas as pd
 import yfinance as yf
 from st_aggrid import AgGrid
 st.markdown("# Competitive Analytics")
-st.subheader("Team Rankings")
+st.subheader("Team Rankings Based on P&L")
 
 from yahoo_fin import stock_info as si
 
