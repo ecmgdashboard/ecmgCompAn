@@ -3,10 +3,9 @@ import pandas as pd
 import yfinance as yf
 from st_aggrid import AgGrid
 st.markdown("# Competitive Analytics")
-st.subheader("Team Rankings")
+st.subheader("Team Rankings Based on P&L")
 
 from yahoo_fin import stock_info as si
-
 df = pd.read_csv('IBOARD.csv')
 def add_current_price(df):
     # Create an empty list to store the current prices
