@@ -62,7 +62,7 @@ def liveprice(ticker):
     #round(current_price,5)
     return current_price
 
-st.subheader("I-Board Stocks that Won:")
+st.subheader("Stocks Pitched at I-Board:")
 
 #read CSV and list P/L and Buy and Sell values of stocks that won
 with open("IBOARD.csv", "r") as csv_file:
