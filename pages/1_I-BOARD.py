@@ -7,6 +7,7 @@ from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 #from streamlit_vega_lite import vega_lite_component, AltairComponent
 
 st.markdown("# **:green[ I-Board Results :tada:]**")
+st.caption('**based on IBoard pitches since 1/1/2023')
 
 df = pd.read_csv("IBOARD.csv")
 
@@ -43,9 +44,9 @@ st.header(f'1. {first_place}: {FirstWins} wins')
 st.subheader(f'2. {second_place}: {SecondWins} win')
 st.subheader(f'3. Delta: 0 wins')
 st.subheader(f'4. Theta: 0 wins')
-
-
-
+st.header("")
+st.subheader("Full Data")
+AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 
 def getprice(ticker,date_str):
     date = datetime.strptime(date_str, "%Y-%m-%d")
@@ -61,82 +62,73 @@ def liveprice(ticker):
     #round(current_price,5)
     return current_price
 
-teams = ['']+['Gamma'] + ['Vega'] + ['Theta'] + ["Delta"]
-st.write("")
-st.header('')
-st.header('')
-st.subheader("Percent Change of Stocks Pitched by Each Team ")
-team = st.selectbox("Select A Team Name",teams)
+st.subheader("Stocks Pitched at I-Board:")
 
 #read CSV and list P/L and Buy and Sell values of stocks that won
 with open("IBOARD.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
-
+    gamma = st.button('Gamma')
+    vega = st.button('Vega')
+    theta = st.button('Theta')
+    delta = st.button('Delta')
     for line in csv_reader:
 
         #if "Yes" in line:
-            if team == 'Gamma':
+            if gamma:
                 if "Gamma" in line:
                     purchaseprice = getprice(line[1], line[2])
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'{total} USD')
-            elif team == 'Vega':
+                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
+            elif vega:
                 if "Vega" in line:
                     purchaseprice = getprice(line[1], line[2])
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'{total} USD')
-            elif team == 'Theta':
+                    st.metric(label="Change", value=f'{change}%')
+            elif theta:
                 if "Theta" in line:
                     purchaseprice = getprice(line[1], line[2])
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'{total} USD')
-            elif team == 'Delta':
+                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
+            elif delta:
                 if "Delta" in line:
                     purchaseprice = getprice(line[1], line[2])
                     currentprice = liveprice(line[1])
-                    total = round((currentprice - purchaseprice), 2)
+                    total = round((currentprice - purchaseprice),2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'{total} USD')
+                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
 
-st.subheader("Full Data")
-st.header("")
-AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 
 data = pd.read_csv("IBOARD.csv")
 for (team), group in data.groupby(['Team']):
     group.to_csv(f'{team}.csv', index=False)
 
 
-#gamma = pd.read_csv("Gamma.csv")
-#vega = pd.read_csv("Vega.csv")
-#theta = pd.read_csv("Theta.csv")
-#delta = pd.read_csv("Delta.csv")
+gamma = pd.read_csv("Gamma.csv")
+vega = pd.read_csv("Vega.csv")
+theta = pd.read_csv("Theta.csv")
+delta = pd.read_csv("Delta.csv")
 
-#print(gamma.head())
-#print()
-#print(vega.head())
-#print()
-#print(theta.head())
-#print()
-#print(delta.head())
+print(gamma.head())
+print()
+print(vega.head())
+print()
+print(theta.head())
+print()
+print(delta.head())
 
 
 
