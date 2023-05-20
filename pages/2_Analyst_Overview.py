@@ -67,6 +67,22 @@ if st.button('Analyze'):
         stock_data = pd.concat([stock_data, df], axis=1)
     st.line_chart(stock_data)
 
+def liveprice(ticker):
+    current_price = si.get_live_price(ticker)
+    current_price = round(current_price, 2)
+        # round(current_price,5)
+    return current_price
+
+purchaseprice = analystdf.iloc[:,4]
+currentprice = liveprice(line[1])
+
+if currentprice and purchaseprice:
+    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+    st.metric(label="PnL", value=f'{change}%')
+else:
+    print('No PnL Calculated')
+
+
     # Daily Market
     # df = yf.download(tickers, start, end)['Adj Close']
     # st.line
