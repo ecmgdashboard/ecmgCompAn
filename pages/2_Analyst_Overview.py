@@ -6,7 +6,7 @@ import pandas as pd
 from st_aggrid import AgGrid
 
 st.header('Analyst Analyzer')
-analystdf = pd.read_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv')
+analystdf = pd.read_csv('Individual Analyst Stock Pitches - Sheet1.csv')
 
 list_stocks = []
 
@@ -35,7 +35,7 @@ analystname = analystdf.loc[:, ["Analyst Name"]]
 option = st.selectbox("Select An Analyst", analystname)
 
 if st.button('Analyze'):
-    st.subheader(f"{option}'s Pitches Analzed")
+    st.subheader(f"{option}'s Pitches Analyzed")
     pitch = analystdf.loc[analystdf['Analyst Name'] == option]
     selected_tickers = find_analyst_stocks(option)
     if selected_tickers:
