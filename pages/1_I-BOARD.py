@@ -6,7 +6,7 @@ from yahoo_fin import stock_info as si
 from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
 #from streamlit_vega_lite import vega_lite_component, AltairComponent
 
-st.markdown("# **:green[ I-Board Results :tada:]**")
+st.markdown("# **:green[ Team Analyzer/I-Board Results :tada:]**")
 st.caption('**based on IBoard pitches since 1/1/2023')
 
 df = pd.read_csv("IBOARD.csv")
