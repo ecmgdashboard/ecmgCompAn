@@ -66,24 +66,23 @@ if st.button('Analyze'):
    #     stock_data = pd.concat([stock_data, df], axis=1)
   #  st.line_chart(stock_data)
 
-for line in analystdf:
-    def liveprice(ticker):
-        current_price = si.get_live_price(ticker)
-        current_price = round(current_price, 2)
+def liveprice(ticker):
+    current_price = si.get_live_price(ticker)
+    current_price = round(current_price, 2)
         # round(current_price,5)
-        return current_price
+    return current_price
 
+def pnl(pitch):
+    change = 'No PnL Calculated'
+    for line in analystdf:
+        if option in line:
+            purchaseprice = analystdf.iloc[option,4]
+            currentprice = liveprice(line[3])
 
-    if option in line:
-        purchaseprice = analystdf.iloc[:,4]
-        currentprice = liveprice(line[3])
-
-
-        if currentprice and purchaseprice:
-            change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-            st.metric(label="PnL", value=f'{change}%')
-        else:
-            print('No PnL Calculated')
+            if currentprice and purchaseprice:
+                change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+                st.metric(label="PnL", value=f'{change}%')
+    return change
 
 
     # Daily Market
