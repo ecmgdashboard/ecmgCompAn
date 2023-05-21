@@ -58,13 +58,13 @@ if st.button('Analyze'):
         # remove MultiIndex
         cumulative_return.columns = cumulative_return.columns.droplevel()
         return cumulative_return
-    st.subheader("Daily Market")
-    stock_data = pd.DataFrame()
-    for stock in tickers:
-        start = pd.to_datetime(find_analyst_stock_enter(option, stock))
-        df = yf.download(stock, start, end)['Adj Close']
-        stock_data = pd.concat([stock_data, df], axis=1)
-    st.line_chart(stock_data)
+ #   st.subheader("Daily Market")
+ #   stock_data = pd.DataFrame()
+  #  for stock in tickers:
+  #      start = pd.to_datetime(find_analyst_stock_enter(option, stock))
+   #     df = yf.download(stock, start, end)['Adj Close']
+   #     stock_data = pd.concat([stock_data, df], axis=1)
+  #  st.line_chart(stock_data)
 
 for line in analystdf:
     def liveprice(ticker):
