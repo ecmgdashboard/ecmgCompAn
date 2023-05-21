@@ -27,7 +27,7 @@ def find_analyst_stocks(name):
 
 def find_analyst_stock_enter(name, stock):
     analyst_df = analystdf[analystdf["Analyst Name"] == name]
-    stock_enter = analyst_df['Date Entered'].tolist()
+    stock_enter = analyst_df['Entry Date'].tolist()
     return stock_enter
 
 analystdf["Current Price"] = analystdf["Stock"].apply(current)
@@ -49,7 +49,7 @@ if st.button('Analyze'):
     selected_analyst_df = analystdf.loc[analystdf['Analyst Name'] == option]
     tickers = tuple(selected_analyst_df['Stock'])
 
-    end = st.date_input('End', value=pd.to_datetime('today'))
+   # end = st.date_input('End', value=pd.to_datetime('today'))
 
     def relative_return(df):
         rel = df.pct_change()
@@ -74,16 +74,16 @@ for line in analystdf:
         return current_price
 
 
-    if option in line:
-        purchaseprice = analystdf.iloc[:,4]
-        currentprice = liveprice(line[3])
+        if option in line:
+            purchaseprice = analystdf.iloc[:,4]
+            currentprice = liveprice(line[3])
 
 
-    if currentprice and purchaseprice:
-        change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-        st.metric(label="PnL", value=f'{change}%')
-    else:
-        print('No PnL Calculated')
+        if currentprice and purchaseprice:
+            change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+            st.metric(label="PnL", value=f'{change}%')
+        else:
+            print('No PnL Calculated')
 
 
     # Daily Market
