@@ -74,9 +74,9 @@ for line in analystdf:
         return current_price
 
 
-        if option in line:
-            purchaseprice = analystdf.iloc[:,4]
-            currentprice = liveprice(line[3])
+    if option in line:
+        purchaseprice = analystdf.iloc[:,4]
+        currentprice = liveprice(line[3])
 
 
         if currentprice and purchaseprice:
