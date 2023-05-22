@@ -65,25 +65,31 @@ if st.button('Analyze'):
    #     df = yf.download(stock, start, end)['Adj Close']
    #     stock_data = pd.concat([stock_data, df], axis=1)
   #  st.line_chart(stock_data)
+with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
+    for line in csv_file:
+        def liveprice(ticker):
+            current_price = si.get_live_price(ticker)
+            current_price = round(current_price, 2)
+            # round(current_price,5)
+            return current_price
 
-def liveprice(ticker):
-    current_price = si.get_live_price(ticker)
-    current_price = round(current_price, 2)
-        # round(current_price,5)
-    return current_price
 
-def pnl(pitch):
-    change = 'No PnL Calculated'
-    for line in analystdf:
         if option in line:
-            purchaseprice = analystdf.iloc[option,4]
-            currentprice = liveprice(line[3])
+            stock = find_analyst_stocks(option)
+            values = line.split(',')
+            purchaseprice = values[4]
+            currentprice = liveprice(values[3])
 
-            if currentprice and purchaseprice:
-                change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                st.metric(label="PnL", value=f'{change}%')
-    return change
+            if pd.notnull(purchaseprice) and purchaseprice != '':
+                purchaseprice = float(purchaseprice)
 
+                if purchaseprice > 0:
+                    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+                    st.metric(label="PnL", value=f'{change}%')
+                else:
+                    st.write('No PnL Calculated')
+            else:
+                st.write(values[3] + ': No purchase price provided')
 
     # Daily Market
     # df = yf.download(tickers, start, end)['Adj Close']
