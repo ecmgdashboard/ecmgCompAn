@@ -85,9 +85,9 @@ with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
 
                 if purchaseprice > 0:
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                    st.metric(label="PnL for " + values[3], value=f'{change}%')
+                    st.metric(label="P&L for " + values[3], value=f'{change}%')
                 else:
-                    st.write('No PnL Calculated')
+                    st.write('No P&L Calculated')
             else:
                 st.write(values[3] + ': No purchase price provided')
 
