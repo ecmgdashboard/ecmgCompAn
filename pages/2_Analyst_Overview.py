@@ -58,38 +58,45 @@ if st.button('Analyze'):
         # remove MultiIndex
         cumulative_return.columns = cumulative_return.columns.droplevel()
         return cumulative_return
- #   st.subheader("Daily Market")
+
+    sum = 0
+    count = 0
+
+    with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
+        for line in csv_file:
+            def liveprice(ticker):
+                current_price = si.get_live_price(ticker)
+                current_price = round(current_price, 2)
+                # round(current_price,5)
+                return current_price
+
+            if option in line:
+                stock = find_analyst_stocks(option)
+                values = line.split(',')
+                purchaseprice = values[4]
+                currentprice = liveprice(values[3])
+
+                if pd.notnull(purchaseprice) and purchaseprice != '':
+                    purchaseprice = float(purchaseprice)
+
+                    if purchaseprice > 0:
+                        change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+                        st.metric(label="P&L for " + values[3], value=f'{change}%')
+                        sum = sum + change
+                        count = count + 1
+                    else:
+                        st.write('No P&L Calculated')
+                else:
+                    st.write(values[3] + ': No purchase price provided')
+    if(count != 0):
+        st.write("Average P&L: " + str(sum/count) + "%")
+#   st.subheader("Daily Market")
  #   stock_data = pd.DataFrame()
   #  for stock in tickers:
   #      start = pd.to_datetime(find_analyst_stock_enter(option, stock))
    #     df = yf.download(stock, start, end)['Adj Close']
    #     stock_data = pd.concat([stock_data, df], axis=1)
   #  st.line_chart(stock_data)
-with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
-    for line in csv_file:
-        def liveprice(ticker):
-            current_price = si.get_live_price(ticker)
-            current_price = round(current_price, 2)
-            # round(current_price,5)
-            return current_price
-
-
-        if option in line:
-            stock = find_analyst_stocks(option)
-            values = line.split(',')
-            purchaseprice = values[4]
-            currentprice = liveprice(values[3])
-
-            if pd.notnull(purchaseprice) and purchaseprice != '':
-                purchaseprice = float(purchaseprice)
-
-                if purchaseprice > 0:
-                    change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                    st.metric(label="P&L for " + values[3], value=f'{change}%')
-                else:
-                    st.write('No P&L Calculated')
-            else:
-                st.write(values[3] + ': No purchase price provided')
 
     # Daily Market
     # df = yf.download(tickers, start, end)['Adj Close']
