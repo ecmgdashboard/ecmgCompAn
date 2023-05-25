@@ -11,7 +11,6 @@ st.caption('**based on IBoard pitches since 1/1/2023')
 
 df = pd.read_csv("IBOARD.csv")
 
-
 # Output: 1
 
 counts = df[df['Winner?'] == 'Yes']['Team'].value_counts()
@@ -82,7 +81,11 @@ with open("IBOARD.csv", "r") as csv_file:
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
+                    if change < 0:
+                        deltaformat = "-$"
+                    else:
+                        deltaformat = "$"
+                    st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif vega:
                 if "Vega" in line:
                     purchaseprice = getprice(line[1], line[2])
@@ -91,7 +94,11 @@ with open("IBOARD.csv", "r") as csv_file:
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%')
+                    if change < 0:
+                        deltaformat = "-$"
+                    else:
+                        deltaformat = "$"
+                    st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif theta:
                 if "Theta" in line:
                     purchaseprice = getprice(line[1], line[2])
@@ -100,16 +107,24 @@ with open("IBOARD.csv", "r") as csv_file:
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
+                    if change < 0:
+                        deltaformat = "-$"
+                    else:
+                        deltaformat = "$"
+                    st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif delta:
                 if "Delta" in line:
                     purchaseprice = getprice(line[1], line[2])
                     currentprice = liveprice(line[1])
-                    total = round((currentprice - purchaseprice),2)
+                    total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
-                    st.metric(label="Change", value=f'{change}%', delta=f'${total}')
+                    if change < 0:
+                        deltaformat = "-$"
+                    else:
+                        deltaformat = "$"
+                    st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
 
 
 data = pd.read_csv("IBOARD.csv")
