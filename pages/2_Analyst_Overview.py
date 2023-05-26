@@ -31,7 +31,7 @@ def find_analyst_stock_enter(name, stock):
     return stock_enter
 
 analystdf["Current Price"] = analystdf["Stock"].apply(current)
-analystname = analystdf.loc[:, ["Analyst Name"]]
+analystname = analystdf['Analyst Name'].unique().tolist()
 option = st.selectbox("Select An Analyst", analystname)
 
 if st.button('Analyze'):
