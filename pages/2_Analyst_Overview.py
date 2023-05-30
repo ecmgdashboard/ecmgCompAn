@@ -9,7 +9,7 @@ from st_aggrid import AgGrid
 from functools import  cache
 
 st.header('Analyst Analyzer')
-st.warning("This Page is Under Construction")
+
 analystdf = pd.read_csv('Individual Analyst Stock Pitches - Sheet1.csv')
 #
 list_stocks = []
@@ -39,7 +39,25 @@ analystdf["Current Price"] = analystdf["Stock"].apply(current)
 analystname = analystdf['Analyst Name'].unique().tolist()
 option = st.selectbox("Select An Analyst", analystname)
 
+
+
+def relative_return(df):
+    rel = df.pct_change()
+    cumulative_return = (1 + rel).cumprod() - 1
+    cumulative_return = cumulative_return.fillna(0)
+    # remove MultiIndex
+    cumulative_return.columns = cumulative_return.columns.droplevel()
+    return cumulative_return
+def liveprice(ticker):
+        current_price = si.get_live_price(ticker)
+        current_price = round(current_price, 2)
+        return current_price
+
+
+
 if st.button('Analyze'):
+    total = 0
+    count = 0
     st.subheader(f"{option}'s Pitches Analyzed")
     pitch = analystdf.loc[analystdf['Analyst Name'] == option]
     selected_tickers = find_analyst_stocks(option)
@@ -55,47 +73,28 @@ if st.button('Analyze'):
     tickers = tuple(selected_analyst_df['Stock'])
 
     # end = st.date_input('End', value=pd.to_datetime('today'))
-
-    @cache
-    def relative_return(df):
-        rel = df.pct_change()
-        cumulative_return = (1 + rel).cumprod()-1
-        cumulative_return = cumulative_return.fillna(0)
-         # remove MultiIndex
-        cumulative_return.columns = cumulative_return.columns.droplevel()
-        return cumulative_return
-
-    sum = 0
-    count = 0
-
     with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
         for line in csv_file:
-            def liveprice(ticker):
-                current_price = si.get_live_price(ticker)
-                current_price = round(current_price, 2)
-                 # round(current_price,5)
-                return current_price
-
             if option in line:
                 stock = find_analyst_stocks(option)
                 values = line.split(',')
                 purchaseprice = values[4]
                 currentprice = liveprice(values[3])
-
                 if pd.notnull(purchaseprice) and purchaseprice != '':
                     purchaseprice = float(purchaseprice)
-
                     if purchaseprice > 0:
                         change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                         st.metric(label="P&L for " + values[3], value=f'{change}%')
-                        sum = sum + change
+                        total += change
                         count = count + 1
                     else:
                         st.write('No P&L Calculated')
                 else:
                     st.write(values[3] + ': No purchase price provided')
     if(count != 0):
-        st.write("Average P&L: " + str(sum/count) + "%")
+        average = round(total/count,2)
+        st.write("Average P&L: " + str(average) + "%")
+
  #   st.subheader("Daily Market")
   #   stock_data = pd.DataFrame()
    #  for stock in tickers:
