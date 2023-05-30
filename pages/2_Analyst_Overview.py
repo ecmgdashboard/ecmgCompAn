@@ -38,9 +38,6 @@ def find_analyst_stock_enter(name, stock):
 analystdf["Current Price"] = analystdf["Stock"].apply(current)
 analystname = analystdf['Analyst Name'].unique().tolist()
 option = st.selectbox("Select An Analyst", analystname)
-
-
-
 def relative_return(df):
     rel = df.pct_change()
     cumulative_return = (1 + rel).cumprod() - 1
@@ -52,9 +49,6 @@ def liveprice(ticker):
         current_price = si.get_live_price(ticker)
         current_price = round(current_price, 2)
         return current_price
-
-
-
 if st.button('Analyze'):
     total = 0
     count = 0
@@ -91,9 +85,9 @@ if st.button('Analyze'):
                         st.write('No P&L Calculated')
                 else:
                     st.write(values[3] + ': No purchase price provided')
-    if(count != 0):
-        average = round(total/count,2)
-        st.write("Average P&L: " + str(average) + "%")
+        if(count != 0):
+            average = round(total/count,2)
+            st.write("Average P&L: " + str(average) + "%")
 
  #   st.subheader("Daily Market")
   #   stock_data = pd.DataFrame()
