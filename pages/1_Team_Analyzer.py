@@ -48,7 +48,7 @@ st.subheader("Full Data")
 AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 
 def getprice(ticker,date_str):
-    date = datetime.strptime(date_str, "%Y-%m-%d")
+    date = datetime.strptime(date_str, "%m/%d/%Y")
 
     # Download the stock data for the specified date
     data = si.get_data(ticker, start_date=date)

@@ -1,1 +1,33 @@
-Analyst Name,Team,Entry Date,Stock,Entry Price,Price Target,Stop Loss,Current Price,Total PnL,% PnLBradley Simmons,Delta,2/27/2023,ATAI,,,,,,Brian Garten,Delta,2/27/2023,SIEGY,,,,,,Brian Garten,Delta,1/16/2023,SEDG,,,,,,Brian Garten,Delta,3/27/2023,ADBE,,370.64,296.37,,,Brian Garten,Delta,2/27/2023,CTVE,,,,,,Sanay Hans,Delta,3/27/2023,ORCL,,,,,,Sanay Hans,Delta,3/27/2023,ORCL,,,,,,Siddharth Turaga,Delta,3/27/2023,ADBE,,370.64,296.37,,,Sujeeth Karri,Delta,3/27/2023,ORCL,,,,,,Sujeeth Karri,Delta,1/16/2023,CI,,268,,,,Anika Eluri,Gamma,3/27/2023,MLM,,335.56,272.51,,,Anika Eluri,Gamma,4/17/2023,CMCSA,,47.11,32.04,,,Akhil Tummala,Theta,4/17/2023,CHWY,,,,,,Amisha Belthur,Theta,3/27/2023,SQ,,96.42,60,,,Amisha Belthur,Theta,4/17/2023,DAR,,71,48,,,Anirudh Lingaraju,Theta,3/27/2023,NU,,,,,,Divit Mehta,Theta,1/16/2023,BABA,,136.62,,,,Enzo Caggiano,Theta,3/27/2023,C,,70,40,,,Enzo Caggiano,Theta,4/17/2023,ACI,,27.25,17.5,,,Erik Kuznetsov,Theta,1/16/2023,BABA,,120.34,,,,James Podell,Theta,1/16/2023,SE,,,,,,James Podell,Theta,2/27/2023,ALB,,,,,,James Podell,Theta,3/27/2023,FRC,,,,,,Riddhi Naresh,Theta,1/16/2023,BABA,,120.34,,,,Riddhi Naresh,Theta,2/27/2023,WCC,,194.3,,,,Viraj Lakhotia,Theta,1/16/2023,LILA,,16.61,,,,Viraj Lakhotia,Theta,2/27/2023,HCC,,49.31,,,,Brooke Vandermyde,Vega,3/27/2023,LLY,,400,297,,,Hung-Chang Chen,Vega,1/16/2023,TGT,,170,,,,Jay Kadire,Vega,1/16/2023,MRK,,,,,,Robbie Lippert,Vega,4/17/2023,PXD,,,,,,Rohan Desai,Vega,4/17/2023,CAT,,,,,,
+Analyst Name,Team,Entry Date,Stock,Entry Price,Price Target,Stop Loss,Current Price,Total PnL,% PnL,Entry Price
+Bradley Simmons,Delta,2/27/2023,ATAI,1.63,,,,,,1.63
+Brian Garten,Delta,2/27/2023,SIEGY,1.63,,,,,,1.63
+Brian Garten,Delta,1/16/2023,SEDG,1.63,,,,,,1.63
+Brian Garten,Delta,3/27/2023,ADBE,1.63,370.64,296.37,,,,1.63
+Brian Garten,Delta,2/27/2023,CTVE,1.63,,,,,,1.63
+Sanay Hans,Delta,3/27/2023,ORCL,1.63,,,,,,1.63
+Sanay Hans,Delta,3/27/2023,ORCL,1.63,,,,,,1.63
+Siddharth Turaga,Delta,3/27/2023,ADBE,1.63,370.64,296.37,,,,1.63
+Sujeeth Karri,Delta,3/27/2023,ORCL,1.63,,,,,,1.63
+Sujeeth Karri,Delta,1/16/2023,CI,1.63,268,,,,,1.63
+Anika Eluri,Gamma,3/27/2023,MLM,1.63,335.56,272.51,,,,1.63
+Anika Eluri,Gamma,4/17/2023,CMCSA,1.63,47.11,32.04,,,,1.63
+Akhil Tummala,Theta,4/17/2023,CHWY,1.63,,,,,,1.63
+Amisha Belthur,Theta,3/27/2023,SQ,1.63,96.42,60,,,,1.63
+Amisha Belthur,Theta,4/17/2023,DAR,1.63,71,48,,,,1.63
+Anirudh Lingaraju,Theta,3/27/2023,NU,1.63,,,,,,1.63
+Divit Mehta,Theta,1/16/2023,BABA,1.63,136.62,,,,,1.63
+Enzo Caggiano,Theta,3/27/2023,C,1.63,70,40,,,,1.63
+Enzo Caggiano,Theta,4/17/2023,ACI,1.63,27.25,17.5,,,,1.63
+Erik Kuznetsov,Theta,1/16/2023,BABA,1.63,120.34,,,,,1.63
+James Podell,Theta,1/16/2023,SE,1.63,,,,,,1.63
+James Podell,Theta,2/27/2023,ALB,1.63,,,,,,1.63
+James Podell,Theta,3/27/2023,FRC,1.63,,,,,,1.63
+Riddhi Naresh,Theta,1/16/2023,BABA,1.63,120.34,,,,,1.63
+Riddhi Naresh,Theta,2/27/2023,WCC,1.63,194.3,,,,,1.63
+Viraj Lakhotia,Theta,1/16/2023,LILA,1.63,16.61,,,,,1.63
+Viraj Lakhotia,Theta,2/27/2023,HCC,1.63,49.31,,,,,1.63
+Brooke Vandermyde,Vega,3/27/2023,LLY,1.63,400,297,,,,1.63
+Hung-Chang Chen,Vega,1/16/2023,TGT,1.63,170,,,,,1.63
+Jay Kadire,Vega,1/16/2023,MRK,1.63,,,,,,1.63
+Robbie Lippert,Vega,4/17/2023,PXD,1.63,,,,,,1.63
+Rohan Desai,Vega,4/17/2023,CAT,1.63,,,,,,1.63
