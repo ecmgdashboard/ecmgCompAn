@@ -48,10 +48,12 @@ def relative_return(df):
     # remove MultiIndex
     cumulative_return.columns = cumulative_return.columns.droplevel()
     return cumulative_return
+
 def liveprice(ticker):
         current_price = si.get_live_price(ticker)
         current_price = round(current_price, 2)
         return current_price
+
 if st.button('Analyze'):
     total = 0
     count = 0
@@ -65,15 +67,25 @@ if st.button('Analyze'):
     for index,row in pitch.iterrows():
         stock = row['Stock']
         purchaseprice = row['Entry Price']
+        date = row['Entry Date']
         currentprice = liveprice(stock)
         if pd.notnull(purchaseprice) and purchaseprice != '':
             purchaseprice = float(purchaseprice)
             change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
             st.metric(label="P&L for " + stock, value=f'{change}%')
             total += change
-            count = count +1
+            count = count + 1
+        elif pd.notnull(date):
+            data = si.get_data(stock, start_date=date)
+            x = data['open'][0]
+            purchaseprice = round(x, 2)
+            change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+            st.metric(label="P&L for " + stock, value=f'{change}%')
+            total += change
+            count = count + 1
         else:
-            st.write(f'{stock}: No Purchase Price Provided')
+            st.write(f'{stock}: No Entry Date Provided')
+
     if count != 0:
         average = round(total/count)
         st.write(f"Average P&L:  {average} %")
