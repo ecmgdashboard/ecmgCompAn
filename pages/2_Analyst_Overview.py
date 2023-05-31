@@ -55,48 +55,61 @@ if st.button('Analyze'):
     st.subheader(f"{option}'s Pitches Analyzed")
     pitch = analystdf.loc[analystdf['Analyst Name'] == option]
     selected_tickers = find_analyst_stocks(option)
-    if selected_tickers:
-        list_stocks.extend(selected_tickers)
-        pitched = ", ".join(selected_tickers)
-    else:
-        pitched = "No Stock"
+    list_stocks.extend(selected_tickers)
+    pitched = ", ".join(selected_tickers)
     st.write(f"{option} has pitched: {pitched}")
-    AgGrid(pitch, height=100)
+    AgGrid(pitch, height=300)
+    for index,row in pitch.iterrows():
+        stock = row['Stock']
+        purchaseprice = row['Entry Price']
+        currentprice = liveprice(stock)
+        if pd.notnull(purchaseprice) and purchaseprice != '':
+            purchaseprice = float(purchaseprice)
+            change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+            st.metric(label="P&L for " + stock, value=f'{change}%')
+            total += change
+            count = count +1
+        else:
+            st.write(f'{stock}: No Purchase Price Provided')
+    if count != 0:
+        average = round(total/count)
+        st.write(f"Average P&L:  {average} %")
 
-    selected_analyst_df = analystdf.loc[analystdf['Analyst Name'] == option]
-    tickers = tuple(selected_analyst_df['Stock'])
-
-    # end = st.date_input('End', value=pd.to_datetime('today'))
-    with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
-        for line in csv_file:
-            if option in line:
-                stock = find_analyst_stocks(option)
-                values = line.split(',')
-                purchaseprice = values[4]
-                currentprice = liveprice(values[3])
-                if pd.notnull(purchaseprice) and purchaseprice != '':
-                    purchaseprice = float(purchaseprice)
-                    if purchaseprice > 0:
-                        change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                        st.metric(label="P&L for " + values[3], value=f'{change}%')
-                        total += change
-                        count = count + 1
-                    else:
-                        st.write('No P&L Calculated')
-                else:
-                    st.write(values[3] + ': No purchase price provided')
-        if(count != 0):
-            average = round(total/count,2)
-            st.write("Average P&L: " + str(average) + "%")
-
- #   st.subheader("Daily Market")
-  #   stock_data = pd.DataFrame()
-   #  for stock in tickers:
-   #      start = pd.to_datetime(find_analyst_stock_enter(option, stock))
-    #     df = yf.download(stock, start, end)['Adj Close']
-    #     stock_data = pd.concat([stock_data, df], axis=1)
-   #  st.line_chart(stock_data)
-
-     # Daily Market
-     # df = yf.download(tickers, start, end)['Adj Close']
-     # st.line
+ #
+ #
+ #
+ #    # end = st.date_input('End', value=pd.to_datetime('today'))
+ #
+ #    with open("Individual Analyst Stock Pitches - Sheet1.csv", "r") as csv_file:
+ #        for line in csv_file:
+ #            if option in line:
+ #                stock = find_analyst_stocks(option)
+ #                values = line.split(',')
+ #                purchaseprice = values[4]
+ #                currentprice = liveprice(values[3])
+ #                if pd.notnull(purchaseprice) and purchaseprice != '':
+ #                    purchaseprice = float(purchaseprice)
+ #                    if purchaseprice > 0:
+ #                        change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
+ #                        st.metric(label="P&L for " + values[3], value=f'{change}%')
+ #                        total += change
+ #                        count = count + 1
+ #                    else:
+ #                        st.write('No P&L Calculated')
+ #                else:
+ #                    st.write(values[3] + ': No purchase price provided')
+ #        if(count != 0):
+ #            average = round(total/count,2)
+ #            st.write("Average P&L: " + str(average) + "%")
+ #
+ # #   st.subheader("Daily Market")
+ #  #   stock_data = pd.DataFrame()
+ #   #  for stock in tickers:
+ #   #      start = pd.to_datetime(find_analyst_stock_enter(option, stock))
+ #    #     df = yf.download(stock, start, end)['Adj Close']
+ #    #     stock_data = pd.concat([stock_data, df], axis=1)
+ #   #  st.line_chart(stock_data)
+ #
+ #     # Daily Market
+ #     # df = yf.download(tickers, start, end)['Adj Close']
+ #     # st.line
