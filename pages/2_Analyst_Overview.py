@@ -12,7 +12,7 @@ st.header('Analyst Analyzer')
 
 @cache
 def get_analyst_df():
-    analystdf = pd.read_csv('Individual Analyst Stock Pitches - Sheet1.csv')
+    analystdf = pd.read_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv')
     return analystdf
 
 analystdf = get_analyst_df()
