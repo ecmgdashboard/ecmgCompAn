@@ -34,8 +34,6 @@ def find_analyst_stock_enter(name, stock):
     analyst_df = analystdf[analystdf["Analyst Name"] == name]
     stock_enter = analyst_df['Entry Date'].tolist()
     return stock_enter
-
-analystdf["Current Price"] = analystdf["Stock"].apply(current)
 analystname = analystdf['Analyst Name'].unique().tolist()
 option = st.selectbox("Select An Analyst", analystname)
 def relative_return(df):
