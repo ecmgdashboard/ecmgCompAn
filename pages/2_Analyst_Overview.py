@@ -7,10 +7,15 @@ from yahoo_fin import stock_info as si
 import pandas as pd
 from st_aggrid import AgGrid
 from functools import  cache
-st.update(go)
+
 st.header('Analyst Analyzer')
 
-analystdf = pd.read_csv('Individual Analyst Stock Pitches - Sheet1.csv')
+@cache
+def get_analyst_df():
+    analystdf = pd.read_csv('Individual Analyst Stock Pitches - Sheet1.csv')
+    return analystdf
+
+analystdf = get_analyst_df()
 #
 list_stocks = []
 #
