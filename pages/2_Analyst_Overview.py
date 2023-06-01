@@ -1,5 +1,5 @@
-import shutil
-import csv
+
+
 import streamlit as st
 import yfinance as yf
 from datetime import datetime
@@ -7,7 +7,6 @@ from yahoo_fin import stock_info as si
 import pandas as pd
 from st_aggrid import AgGrid
 from functools import  cache
-import tempfile
 
 st.header('Analyst Analyzer')
 
@@ -50,21 +49,6 @@ def relative_return(df):
     cumulative_return.columns = cumulative_return.columns.droplevel()
     return cumulative_return
 
-def update_csv(file_path, purchase_price):
-    temp_file = tempfile.NamedTemporaryFile(mode='w', delete=False)  # Create a temporary file
-
-    with open(file_path, 'r') as csv_file, temp_file:
-        reader = csv.DictReader(csv_file)
-        fieldnames = reader.fieldnames + ['Entry Price']
-        writer = csv.DictWriter(temp_file, fieldnames=fieldnames)
-        writer.writeheader()
-
-        for row in reader:
-            row['Entry Price'] = purchase_price
-            writer.writerow(row)
-
-    shutil.move(temp_file.name, file_path)
-
 def liveprice(ticker):
         current_price = si.get_live_price(ticker)
         current_price = round(current_price, 2)
@@ -95,7 +79,6 @@ if st.button('Analyze'):
             data = si.get_data(stock, start_date=date)
             x = data['open'][0]
             purchaseprice = round(x, 2)
-            update_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv', purchaseprice)
             change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
             st.metric(label="P&L for " + stock, value=f'{change}%')
             total += change
@@ -107,9 +90,7 @@ if st.button('Analyze'):
         average = round(total/count)
         st.write(f"Average P&L:  {average} %")
 
-
-
-#
+ #
  #
  #
  #    # end = st.date_input('End', value=pd.to_datetime('today'))
