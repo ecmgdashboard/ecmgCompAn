@@ -1,65 +1,33 @@
-Analyst Name,Team,Entry Date,Stock,Entry Price,Price Target,Stop Loss,Current Price,Total PnL,% PnL,Entry Price,Entry Price,Entry Price,Entry Price,Entry Price
-
-Bradley Simmons,Delta,2/27/2023,ATAI,,,,,,,,,,,
-
-Brian Garten,Delta,2/27/2023,SIEGY,76.54,,,,,,76.54,76.54,76.54,76.54,76.54
-
-Brian Garten,Delta,1/16/2023,SEDG,315.0,,,,,,315.0,315.0,315.0,315.0,315.0
-
-Brian Garten,Delta,3/27/2023,ADBE,376.51,370.64,296.37,,,,376.51,376.51,376.51,376.51,376.51
-
-Brian Garten,Delta,2/27/2023,CTVE,,,,,,,,,,,
-
-Sanay Hans,Delta,3/27/2023,ORCL,,,,,,,,,,,
-
-Sanay Hans,Delta,3/27/2023,ORCL,,,,,,,,,,,
-
-Siddharth Turaga,Delta,3/27/2023,ADBE,,370.64,296.37,,,,,,,,
-
-Sujeeth Karri,Delta,3/27/2023,ORCL,88.62,,,,,,88.62,88.62,88.62,88.62,88.62
-
-Sujeeth Karri,Delta,1/16/2023,CI,314.78,268,,,,,314.78,314.78,314.78,314.78,314.78
-
-Anika Eluri,Gamma,3/27/2023,MLM,,335.56,272.51,,,,,,,,
-
-Anika Eluri,Gamma,4/17/2023,CMCSA,,47.11,32.04,,,,,,,,
-
-Akhil Tummala,Theta,4/17/2023,CHWY,,,,,,,,,,,
-
-Amisha Belthur,Theta,3/27/2023,SQ,,96.42,60,,,,,,,,
-
-Amisha Belthur,Theta,4/17/2023,DAR,,71,48,,,,,,,,
-
-Anirudh Lingaraju,Theta,3/27/2023,NU,,,,,,,,,,,
-
-Divit Mehta,Theta,1/16/2023,BABA,,136.62,,,,,,,,,
-
-Enzo Caggiano,Theta,3/27/2023,C,,70,40,,,,,,,,
-
-Enzo Caggiano,Theta,4/17/2023,ACI,,27.25,17.5,,,,,,,,
-
-Erik Kuznetsov,Theta,1/16/2023,BABA,,120.34,,,,,,,,,
-
-James Podell,Theta,1/16/2023,SE,,,,,,,,,,,
-
-James Podell,Theta,2/27/2023,ALB,,,,,,,,,,,
-
-James Podell,Theta,3/27/2023,FRC,,,,,,,,,,,
-
-Riddhi Naresh,Theta,1/16/2023,BABA,,120.34,,,,,,,,,
-
-Riddhi Naresh,Theta,2/27/2023,WCC,,194.3,,,,,,,,,
-
-Viraj Lakhotia,Theta,1/16/2023,LILA,,16.61,,,,,,,,,
-
-Viraj Lakhotia,Theta,2/27/2023,HCC,,49.31,,,,,,,,,
-
-Brooke Vandermyde,Vega,3/27/2023,LLY,,400,297,,,,,,,,
-
-Hung-Chang Chen,Vega,1/16/2023,TGT,,170,,,,,,,,,
-
-Jay Kadire,Vega,1/16/2023,MRK,,,,,,,,,,,
-
-Robbie Lippert,Vega,4/17/2023,PXD,,,,,,,,,,,
-
-Rohan Desai,Vega,4/17/2023,CAT,,,,,,,,,,,
+,Analyst Name,Team,Entry Date,Stock,Entry Price,Current Price,Price Target,Stop Loss,Total PnL,% PnL
+0,Bradley Simmons,Delta,2/27/2023,ATAI,1.63,,,,,
+1,Brian Garten,Delta,2/27/2023,SIEGY,76.54,,,,,
+2,Brian Garten,Delta,1/17/2023,SEDG,315,,,,,
+3,Brian Garten,Delta,3/27/2023,ADBE,376.51,,370.64,296.37,,
+4,Brian Garten,Delta,2/27/2023,CTVA,61.56,,,,,
+5,Sanay Hans,Delta,3/27/2023,ORCL,88.62,,,,,
+6,Sanay Hans,Delta,3/27/2023,ORCL,88.62,,,,,
+7,Siddharth Turaga,Delta,3/27/2023,ADBE,376.51,,370.64,296.37,,
+8,Sujeeth Karri,Delta,3/27/2023,ORCL,88.62,,,,,
+9,Sujeeth Karri,Delta,1/17/2023,CI,314.78,,268,,,
+10,Anika Eluri,Gamma,3/27/2023,MLM,339.46,,335.56,272.51,,
+11,Anika Eluri,Gamma,4/17/2023,CMCSA,37.99,,47.11,32.04,,
+12,Akhil Tummala,Theta,4/17/2023,CHWY,34.98,,,,,
+13,Amisha Belthur,Theta,3/27/2023,SQ,62.46,,96.42,60,,
+14,Amisha Belthur,Theta,4/17/2023,DAR,58.57,,71,48,,
+15,Anirudh Lingaraju,Theta,3/27/2023,NU,4.24,,,,,
+16,Divit Mehta,Theta,1/17/2023,BABA,115.52,,136.62,,,
+17,Enzo Caggiano,Theta,3/27/2023,C,44.06,,70,40,,
+18,Enzo Caggiano,Theta,4/17/2023,ACI,20.74,,27.25,17.5,,
+19,Erik Kuznetsov,Theta,1/17/2023,BABA,115.52,,120.34,,,
+20,James Podell,Theta,1/17/2023,SE,60.28,,,,,
+21,James Podell,Theta,2/27/2023,ALB,253.26,,,,,
+22,James Podell,Theta,3/27/2023,FRCB,16.19,,,,,
+23,Riddhi Naresh,Theta,1/17/2023,BABA,115.52,,120.34,,,
+24,Riddhi Naresh,Theta,2/27/2023,WCC,164.88,,194.3,,,
+25,Viraj Lakhotia,Theta,1/17/2023,LILA,9,,16.61,,,
+26,Viraj Lakhotia,Theta,2/27/2023,HCC,36.4,,49.31,,,
+27,Brooke Vandermyde,Vega,3/27/2023,LLY,327.8,,400,297,,
+28,Hung-Chang Chen,Vega,1/17/2023,TGT,164.49,,170,,,
+29,Jay Kadire,Vega,1/17/2023,MRK,112.03,,,,,
+30,Robbie Lippert,Vega,4/17/2023,PXD,230.4,,,,,
+31,Rohan Desai,Vega,4/17/2023,CAT,225.01,,,,,

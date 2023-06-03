@@ -2,7 +2,7 @@
 
 import streamlit as st
 import yfinance as yf
-from datetime import datetime
+from datetime import date
 from yahoo_fin import stock_info as si
 import pandas as pd
 from st_aggrid import AgGrid
@@ -16,9 +16,28 @@ def get_analyst_df():
     return analystdf
 
 analystdf = get_analyst_df()
+
+
+today = date.today()
+today = today.strftime("%Y-%m-%d")
+
+
+entryprices = []
+if analystdf["Entry Price"].isna().sum().sum() != 0:
+    tickers = analystdf["Stock"].tolist()
+    dates = analystdf["Entry Date"].tolist()
+    for i in range(0,len(tickers)):
+        data = yf.download(tickers[i],start="2023-01-01",end=today)
+        entryprice = round(data.loc[dates[i]]["Open"],2)
+        entryprices.append(entryprice)
+    analystdf["Entry Price"] = entryprices
+    analystdf.to_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv')
+
 #
 list_stocks = []
 #
+#
+
 @cache
 def current(ticker):
     try:
@@ -54,6 +73,14 @@ def liveprice(ticker):
         current_price = round(current_price, 2)
         return current_price
 
+def currentprices(pitch):
+    prices = []
+    for ticker in pitch['Stock']:
+        price = liveprice(ticker)
+        prices.append(price)
+    pitch['Current Price'] = prices
+    return pitch
+
 if st.button('Analyze'):
     total = 0
     count = 0
@@ -63,12 +90,14 @@ if st.button('Analyze'):
     list_stocks.extend(selected_tickers)
     pitched = ", ".join(selected_tickers)
     st.write(f"{option} has pitched: {pitched}")
+    pitch = currentprices(pitch)
     AgGrid(pitch, height=300)
     for index,row in pitch.iterrows():
         stock = row['Stock']
         purchaseprice = row['Entry Price']
-        date = row['Entry Date']
+        entrydate = row['Entry Date']
         currentprice = liveprice(stock)
+        row['Current Price'] = liveprice(stock)
         if pd.notnull(purchaseprice) and purchaseprice != '':
             purchaseprice = float(purchaseprice)
             change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
@@ -76,9 +105,6 @@ if st.button('Analyze'):
             total += change
             count = count + 1
         elif pd.notnull(date):
-            data = si.get_data(stock, start_date=date)
-            x = data['open'][0]
-            purchaseprice = round(x, 2)
             change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
             st.metric(label="P&L for " + stock, value=f'{change}%')
             total += change
