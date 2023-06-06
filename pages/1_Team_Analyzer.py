@@ -45,7 +45,7 @@ top_teams = df_counts[df_counts['rank'] <= 4]['team'].tolist()
 # Assign each team to a different variable
 first_place = top_teams[0]
 second_place = top_teams[1]
-#third_place = top_teams[2]
+third_place = top_teams[2]
 #ourth_place = top_teams[3]
 def count_wins(df, team):
     wins = 0
@@ -55,11 +55,11 @@ def count_wins(df, team):
     return wins
 SecondWins = count_wins(df, second_place)
 FirstWins = count_wins(df, first_place)
-#ThirdWins = count_wins(df, third_place)
+ThirdWins = count_wins(df, third_place)
 #FourthWins = count_wins(df, fourth_place)
 st.header(f'1. {first_place}: {FirstWins} wins')
 st.subheader(f'2. {second_place}: {SecondWins} win')
-st.subheader(f'3. Delta: 0 wins')
+st.subheader(f'3. {third_place}: {ThirdWins} wins')
 st.subheader(f'4. Theta: 0 wins')
 st.header("")
 st.subheader("Full Data")
