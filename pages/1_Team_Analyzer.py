@@ -97,7 +97,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                    st.header(line[1])
+                    st.header(line[2])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
                     if change < 0:
                         deltaformat = "-$"
@@ -110,7 +110,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                    st.header(line[1])
+                    st.header(line[2])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
                     if change < 0:
                         deltaformat = "-$"
@@ -123,7 +123,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                    st.header(line[1])
+                    st.header(line[2])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
                     if change < 0:
                         deltaformat = "-$"
@@ -136,7 +136,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
-                    st.header(line[1])
+                    st.header(line[2])
                     st.write(f'Purchased at {purchaseprice}. Currently at {currentprice}')
                     if change < 0:
                         deltaformat = "-$"
