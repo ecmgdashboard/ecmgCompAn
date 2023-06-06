@@ -22,7 +22,7 @@ today = today.strftime("%Y-%m-%d")
 
 if df["Entry Price"].isna().sum().sum() != 0:
     tickers = df["Pitch"].tolist()
-    dates = df["Entry Date"].tolist()
+    dates = df["Date of Next Open"].tolist()
     for i in range(0,len(tickers)):
         data = yf.download(tickers[i],start="2023-01-01",end=today)
         entryprice = round(data.loc[dates[i]]["Open"],2)
