@@ -93,6 +93,7 @@ with open("IBOARD.csv", "r") as csv_file:
         #if "Yes" in line:
             if gamma:
                 if "Gamma" in line:
+                    st.markdown(line[1])
                     purchaseprice = line[4]
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
