@@ -93,9 +93,8 @@ with open("IBOARD.csv", "r") as csv_file:
         #if "Yes" in line:
             if gamma:
                 if "Gamma" in line:
-                    st.markdown(line[1])
-                    purchaseprice = line[4]
-                    currentprice = liveprice(line[1])
+                    purchaseprice = float(line[5])
+                    currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
@@ -107,8 +106,8 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif vega:
                 if "Vega" in line:
-                    purchaseprice = line[4]
-                    currentprice = liveprice(line[1])
+                    purchaseprice = float(line[5])
+                    currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
@@ -120,8 +119,8 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif theta:
                 if "Theta" in line:
-                    purchaseprice = line[4]
-                    currentprice = liveprice(line[1])
+                    purchaseprice = float(line[5])
+                    currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
@@ -133,8 +132,8 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif delta:
                 if "Delta" in line:
-                    purchaseprice = line[4]
-                    currentprice = liveprice(line[1])
+                    purchaseprice = float(line[5])
+                    currentprice = liveprice(line[2])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
                     st.header(line[1])
