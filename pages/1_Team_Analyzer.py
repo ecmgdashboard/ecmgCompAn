@@ -1,6 +1,8 @@
 import csv
+import yfinance as yf
 import pandas as pd
 import streamlit as st
+from datetime import date
 from datetime import datetime
 from yahoo_fin import stock_info as si
 from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode, JsCode
@@ -12,6 +14,22 @@ st.caption('**based on IBoard pitches since 1/1/2023')
 df = pd.read_csv("IBOARD.csv")
 
 # Output: 1
+
+entryprices = []
+
+today = date.today()
+today = today.strftime("%Y-%m-%d")
+
+if df["Entry Price"].isna().sum().sum() != 0:
+    tickers = df["Pitch"].tolist()
+    dates = df["Entry Date"].tolist()
+    for i in range(0,len(tickers)):
+        data = yf.download(tickers[i],start="2023-01-01",end=today)
+        entryprice = round(data.loc[dates[i]]["Open"],2)
+        entryprices.append(entryprice)
+    df["Entry Price"] = entryprices
+    df.to_csv('IBOARD.csv')
+
 
 counts = df[df['Winner?'] == 'Yes']['Team'].value_counts()
 
@@ -75,7 +93,7 @@ with open("IBOARD.csv", "r") as csv_file:
         #if "Yes" in line:
             if gamma:
                 if "Gamma" in line:
-                    purchaseprice = getprice(line[1], line[2])
+                    purchaseprice = line[4]
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
@@ -88,7 +106,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif vega:
                 if "Vega" in line:
-                    purchaseprice = getprice(line[1], line[2])
+                    purchaseprice = line[4]
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
@@ -101,7 +119,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif theta:
                 if "Theta" in line:
-                    purchaseprice = getprice(line[1], line[2])
+                    purchaseprice = line[4]
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
@@ -114,7 +132,7 @@ with open("IBOARD.csv", "r") as csv_file:
                     st.metric(label="Change", value=f'{change}%', delta= (deltaformat + str(total)), delta_color= "normal")
             elif delta:
                 if "Delta" in line:
-                    purchaseprice = getprice(line[1], line[2])
+                    purchaseprice = line[4]
                     currentprice = liveprice(line[1])
                     total = round((currentprice - purchaseprice), 2)
                     change = round(((currentprice - purchaseprice) / purchaseprice) * 100, 2)
