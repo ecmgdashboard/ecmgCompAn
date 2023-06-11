@@ -12,7 +12,7 @@ st.header('Analyst Analyzer')
 
 @cache
 def get_analyst_df():
-    analystdf = pd.read_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv')
+    analystdf = pd.read_csv('Comp An Analyst Pitch Holdings - Sheet1.csv')
     return analystdf
 
 analystdf = get_analyst_df()
@@ -31,7 +31,7 @@ if analystdf["Entry Price"].isna().sum().sum() != 0:
         entryprice = round(data.loc[dates[i]]["Open"],2)
         entryprices.append(entryprice)
     analystdf["Entry Price"] = entryprices
-    analystdf.to_csv('Comp An Analyst Pitch Holdings - Sheet1 (1).csv')
+    analystdf.to_csv('Comp An Analyst Pitch Holdings - Sheet1.csv')
 
 #
 list_stocks = []
