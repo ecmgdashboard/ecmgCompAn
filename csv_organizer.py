@@ -4,12 +4,10 @@ import pandas as pd
 def remove_duplicates(file_name):
     df = pd.read_csv(file_name)
     initial_shape = df.shape
-
-    # - the `subset=None` means that every column is used
-    #    to determine if two rows are different; to change that specify
-    #    the columns as an array
-    #   the duplicate rows are gone
-
+    # the `subset=None` means that every column is used
+    # to determine if two rows are different; to change that specify
+    # the columns as an array
+    # the duplicate rows are gone
     if file_name == "Individual Analyst Stock Pitches - Sheet1.csv":
         df.drop_duplicates(subset=None, inplace=True)
     elif file_name == "Comp An Analyst Pitch Holdings - Sheet1.csv":
@@ -17,9 +15,6 @@ def remove_duplicates(file_name):
         df.drop_duplicates(subset=subset_cols, inplace=True)
     else:
         print("manipulating wrong files")
-
-
-
 
     final_shape = df.shape
 

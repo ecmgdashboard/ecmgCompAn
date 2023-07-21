@@ -65,6 +65,7 @@ st.header("")
 st.subheader("Full Data")
 AgGrid(df, height=275,fit_columns_on_grid_load=True,theme='dark')
 
+
 def getprice(ticker,date_str):
     date = datetime.strptime(date_str, "%m/%d/%Y")
 
@@ -73,15 +74,18 @@ def getprice(ticker,date_str):
     x = data['open'][0]
     x = round(x, 2)
     return x
+
+
 def liveprice(ticker):
     current_price = si.get_live_price(ticker)
     current_price = round(current_price,2)
-    #round(current_price,5)
+    # round(current_price,5)
     return current_price
+
 
 st.subheader("Stocks Pitched at I-Board:")
 
-#read CSV and list P/L and Buy and Sell values of stocks that won
+# read CSV and list P/L and Buy and Sell values of stocks that won
 with open("IBOARD.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
     gamma = st.button('Gamma')
@@ -90,7 +94,7 @@ with open("IBOARD.csv", "r") as csv_file:
     delta = st.button('Delta')
     for line in csv_reader:
 
-        #if "Yes" in line:
+        # if "Yes" in line:
             if gamma:
                 if "Gamma" in line:
                     purchaseprice = float(line[5])
@@ -163,33 +167,9 @@ print(theta.head())
 print()
 print(delta.head())
 
-
-
-#print(pd.read_csv("Vega.csv"))
-#print(pd.read_csv("Gamma.csv"))
-#print(pd.read_csv("Theta.csv"))
-#print(pd.read_csv("Delta.csv"))
-
-
-
-#with open("IBOARD.csv", "r") as csv_file:
-    #csv_reader = csv.reader(csv_file)
-
-    #for line in csv_reader:
-
-    #   if "Yes" in line:
-    #       second_word = line[1]
-    #       st.button(second_word)
-    #       buy = line[4]
-    #       sell = line[5]
-    #       if buy.isdigit() and sell.isdigit():
-    #          pl = int(buy)-int(sell)
-    #       st.write("Buy Value: "+buy+"\nSell Value: "+sell)
-    #       if pl<0:
-    #           unrealized = "("+str(pl)+")"
-    #       else:
-    #          unrealized = str(pl)
-    #       st.write("Unrealized P/L: "+unrealized)
-
+# print(pd.read_csv("Vega.csv"))
+# print(pd.read_csv("Gamma.csv"))
+# print(pd.read_csv("Theta.csv"))
+# print(pd.read_csv("Delta.csv"))
 # Print results.
 
