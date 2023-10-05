@@ -1,5 +1,6 @@
-Team,Pitch,Date of Next Open,Winner?,PT,SL
-Gamma,COST,1/16/2023,Yes,150.0,105.0
-Gamma,AAL,2/27/2023,No,16.8,12.0
-Gamma,NRP,3/27/2023,No,64.51,41.0
-Gamma,FTNT,4/17/2023,No,90.04,57.3
+Unnamed: 0,Team,Pitch,Date of Next Open,Winner?,Entry Price,PT,SL
+0,Gamma,COST,1/17/2023,Yes,485.13,150.0,105.0
+4,Gamma,AAL,2/27/2023,No,15.74,16.8,12.0
+8,Gamma,NRP,3/27/2023,No,51.69,64.51,41.0
+15,Gamma,FTNT,4/17/2023,No,68.36,90.04,57.3
+16,Gamma,KO,6/5/2023,No,61.0,,

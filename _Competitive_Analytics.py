@@ -41,12 +41,8 @@ def add_price_bought_at(df):
 
 # Read in the updated dataframe
 
-
-
-
 df = add_current_price(df)
 df = add_price_bought_at(df)
-
 
 # Calculate the percent change for each row
 df['Percent Change'] = (df['Current Price'] - df['Price Bought At']) / df['Price Bought At'] * 100
